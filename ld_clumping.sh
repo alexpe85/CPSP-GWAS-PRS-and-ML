@@ -1,0 +1,22 @@
+dx run swiss-army-knife \
+  -iin="/new_PRS/gwas_for_clumping.txt" \
+  -iin="/new_PRS/snps_to_clump_p0.1.txt" \
+  -iin="/new_PRS/imputed_merged_no_dups.bed" \
+  -iin="/new_PRS/imputed_merged_no_dups.fam" \
+  -iin="/new_PRS/imputed_merged_no_dups.bim" \
+  -icmd="plink \
+    --bfile imputed_merged_no_dups \
+    --clump gwas_for_clumping.txt \
+    --clump-p1 0.2 \
+    --clump-p2 0.2 \
+    --clump-r2 0.1 \
+    --clump-kb 250 \
+    --clump-snp-field ID \
+    --clump-field P \
+    --extract snps_to_clump_p0.1.txt \
+    --out clumped_p0.1" \
+  --destination="/new_PRS/" \
+  --instance-type mem2_ssd1_v2_x16 \
+  --name="LD Clumping P0.1" \
+  --tag="LD-Clumping-P0.1" \
+  --brief --yes
